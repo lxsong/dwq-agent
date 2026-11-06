@@ -1,0 +1,22 @@
+mkdir -p  /home/docker-compose/sit-ware/dwq-agent
+
+cd /home/docker-compose/sit-ware/dwq-agent
+
+docker-compose down
+ 
+
+rm -rf  /home/docker-compose/sit-ware/dwq-agent
+
+cp -rf /vagrant/sit-ware/dwq-agent  /home/docker-compose/sit-ware
+
+cd /home/docker-compose/sit-ware
+
+chmod 777 -R  dwq-agent
+
+cd /home/docker-compose/sit-ware/dwq-agent
+
+docker-compose --compatibility  up  -d
+
+docker-compose  logs -f
+
+
