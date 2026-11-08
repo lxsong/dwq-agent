@@ -2,7 +2,7 @@ mkdir -p  /home/docker-compose/sit-ware/dwq-agent
 
 cd /home/docker-compose/sit-ware/dwq-agent
 
-docker-compose down
+docker-compose down -v
  
 
 rm -rf  /home/docker-compose/sit-ware/dwq-agent

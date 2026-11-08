@@ -1,5 +1,5 @@
 [project]
-name = "shopkeeper-agent"
+name = "dwq-agent"
 version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
