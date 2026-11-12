@@ -63,3 +63,4 @@ docker/embedding/
 /app/scripts/logs/app.log
 /app/agent/logs/app.log
 /app/agent/nodes/logs/app.log
+/frontend-vue/.vite/
