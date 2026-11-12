@@ -7,6 +7,7 @@ from typing import TypedDict
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
 
 from app.repositories.es.value_es_repository import ValueESRepository
+from app.repositories.mysql.dw.dw_mysql_repository import DWMySQLRepository
 from app.repositories.mysql.meta.meta_mysql_repository import MetaMySQLRepository
 from app.repositories.qdrant.column_qdrant_repository import ColumnQdrantRepository
 from app.repositories.qdrant.metric_qdrant_repository import MetricQdrantRepository
@@ -25,3 +26,5 @@ class DataAgentContext(TypedDict):
     value_es_repository: ValueESRepository
     # 元数据仓储，负责在召回结果合并时补齐字段 表 主外键等结构信息
     meta_mysql_repository: MetaMySQLRepository
+    # 数仓仓储，负责查询数据库方言/版本及后续 SQL 执行
+    dw_mysql_repository: DWMySQLRepository

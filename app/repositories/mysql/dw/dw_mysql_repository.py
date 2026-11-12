@@ -33,3 +33,15 @@ class DWMySQLRepository:
         result = await self.session.execute(text(sql))
         # row[0] 取出单列查询结果中的实际字段值，组装为纯 Python list
         return [row[0] for row in result.fetchall()]
+
+    async def get_db_info(self) -> dict[str, str]:
+        """读取当前数仓数据库的方言和版本，供 SQL 生成提示词使用"""
+
+        # 1. 执行 SELECT version() 查询数据库真实版本号，使用 scalar() 直接提取单行单列标量值
+        sql = "select version()"
+        result = await self.session.execute(text(sql))
+        version = result.scalar()
+
+        # 2. 从 SQLAlchemy Session 绑定的 Engine 中直接读取当前数据库方言名称（如 "mysql"）
+        dialect = self.session.bind.dialect.name
+        return {"dialect": dialect, "version": version}

@@ -39,6 +39,20 @@ class TableInfoState(TypedDict):
     description: str
     columns: list[ColumnInfoState]
 
+class DateInfoState(TypedDict):
+    """SQL 生成阶段使用的当前日期上下文"""
+
+    date: str     # 格式 YYYY-MM-DD，如 "2026-04-27"
+    weekday: str  # 英文星期名称，如 "Monday"
+    quarter: str  # 当前季度，如 "Q2"
+
+
+class DBInfoState(TypedDict):
+    """SQL 生成阶段使用的数据库环境信息"""
+
+    dialect: str  # 数据库方言名称，如 "mysql"
+    version: str  # 数据库具体版本号，如 "8.0.45"
+
 
 class DataAgentState(TypedDict):
     """一次问数链路中的核心共享状态"""
@@ -49,7 +63,10 @@ class DataAgentState(TypedDict):
     retrieved_metric_infos: list[MetricInfo]  # 检索到的指标信息
     retrieved_value_infos: list[ValueInfo]    # 检索到的取值信息
 
-    table_infos: list[TableInfoState]         # 【本章新增】合并和补齐后的表结构上下文
-    metric_infos: list[MetricInfoState]       # 【本章新增】合并后的指标上下文
+    table_infos: list[TableInfoState]         # 合并和补齐后的表结构上下文
+    metric_infos: list[MetricInfoState]       # 合并后的指标上下文
+
+    date_info: DateInfoState  # 当前日期、星期和季度信息
+    db_info: DBInfoState      # 数仓数据库方言和版本信息
 
     error: str | None                         # 校验 SQL 时出现的错误信息
