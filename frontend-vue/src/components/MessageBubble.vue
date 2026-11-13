@@ -8,6 +8,7 @@ import { computed } from "vue";
 import { cn, formatTime, toClipboardText } from "../lib/format";
 import type { ChatMessage } from "../types/agent";
 import ResultTable from "./ResultTable.vue";
+import SqlViewer from "./SqlViewer.vue";
 import StepRail from "./StepRail.vue";
 
 const props = defineProps<{
@@ -64,6 +65,7 @@ const copy = async () => {
         </div>
 
         <StepRail v-if="!isUser" :steps="message.steps" />
+        <SqlViewer v-if="!isUser && message.sql" :sql="message.sql" />
         <ResultTable v-if="!isUser && message.result !== undefined" :data="message.result" />
 
         <div :class="cn('mt-3 text-xs', isUser ? 'text-parchment/55' : 'text-ink/45')">

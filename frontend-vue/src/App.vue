@@ -105,6 +105,13 @@ const startQuery = async (rawQuery = draft.value) => {
         };
       }
 
+      if (event.type === "sql") {
+        return {
+          ...message,
+          sql: event.sql,
+        };
+      }
+
       if (event.type === "result") {
         return {
           ...message,
@@ -174,7 +181,7 @@ const clearConversation = () => {
             </div>
             <div>
               <div class="text-base font-semibold tracking-[0.02em]">电商问数</div>
-              <div class="text-xs text-ink/50">shopkeeper-agent</div>
+              <div class="text-xs text-ink/50">DWQ-agent</div>
             </div>
           </div>
         </div>

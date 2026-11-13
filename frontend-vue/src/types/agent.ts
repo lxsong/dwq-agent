@@ -10,6 +10,11 @@ export type ProgressEvent = {
   status: ProgressStatus;
 };
 
+export type SqlEvent = {
+  type: "sql";
+  sql: string;
+};
+
 export type ResultEvent = {
   type: "result";
   data: unknown;
@@ -20,7 +25,7 @@ export type ErrorEvent = {
   message: string;
 };
 
-export type AgentEvent = ProgressEvent | ResultEvent | ErrorEvent;
+export type AgentEvent = ProgressEvent | SqlEvent | ResultEvent | ErrorEvent;
 
 export type StepState = {
   step: string;
@@ -35,6 +40,7 @@ export type ChatMessage = {
   createdAt: number;
   status?: "streaming" | "done" | "error";
   steps?: StepState[];
+  sql?: string;
   result?: unknown;
   error?: string;
 };
