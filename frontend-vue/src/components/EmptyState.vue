@@ -27,7 +27,7 @@ const highlights = [
         class="mb-5 inline-flex items-center gap-2 border border-moss/25 bg-moss/10 px-3 py-1.5 text-sm font-semibold text-moss"
       >
         <Sparkles class="h-4 w-4" aria-hidden="true" />
-        Shopkeeper Agent
+        DWQ Agent
       </div>
       <h1 class="text-balance text-4xl font-semibold leading-tight text-ink sm:text-6xl">
         电商问数
