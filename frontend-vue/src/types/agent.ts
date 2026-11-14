@@ -25,6 +25,7 @@ export type ErrorEvent = {
   message: string;
 };
 
+export type AgentEvent = ProgressEvent | SqlEvent | ResultEvent | ErrorEvent;
 
 export type StepState = {
   step: string;
