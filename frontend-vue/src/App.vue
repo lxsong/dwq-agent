@@ -181,7 +181,6 @@ const clearConversation = () => {
             </div>
             <div>
               <div class="text-base font-semibold tracking-[0.02em]">电商问数</div>
-              <div class="text-xs text-ink/50">DWQ-agent</div>
             </div>
           </div>
         </div>

@@ -1,13 +1,6 @@
 <!--
-  查询结果组件
-  支持二维数据表格与 ECharts 交互式 BI 图表（柱状图 / 折线图）自由切换
 -->
 <script setup lang="ts">
-import { BarChart2, Database, FileJson, LineChart, Table } from "lucide-vue-next";
-import * as echarts from "echarts";
-import { computed, nextTick, onBeforeUnmount, onMounted, ref, watch } from "vue";
-
-type ViewMode = "table" | "bar" | "line";
 
 const props = defineProps<{
   data: unknown;
@@ -257,69 +250,12 @@ onBeforeUnmount(() => {
     v-if="columns.length > 0"
     class="mt-4 overflow-hidden border border-ink/10 bg-white/70 shadow-line"
   >
-    <!-- 头部工具栏 -->
-    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-ink/10 px-4 py-2.5">
       <div class="flex items-center gap-2 text-sm font-semibold text-ink">
         <Database class="h-4 w-4 text-moss" aria-hidden="true" />
-        <span>查询结果</span>
       </div>
-
-      <div class="flex items-center gap-3">
-        <div class="hidden items-center gap-1.5 text-xs text-ink/55 sm:flex">
           <FileJson class="h-3.5 w-3.5" aria-hidden="true" />
-          <span>{{ rows.length }} 行</span>
-        </div>
-
-        <!-- [表格 | 柱状图 | 折线图] 视图切换按钮组 -->
-        <div class="inline-flex items-center rounded border border-ink/10 bg-[#efe6d8]/70 p-0.5 shadow-sm">
-          <button
-            type="button"
-            :class="[
-              'flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium transition',
-              viewMode === 'table'
-                ? 'bg-ink text-parchment shadow-sm'
-                : 'text-ink/65 hover:bg-black/5 hover:text-ink',
-            ]"
-            title="表格视图"
-            @click="viewMode = 'table'"
-          >
-            <Table class="h-3.5 w-3.5" aria-hidden="true" />
-            <span>表格</span>
-          </button>
-          <button
-            type="button"
-            :class="[
-              'flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium transition',
-              viewMode === 'bar'
-                ? 'bg-ink text-parchment shadow-sm'
-                : 'text-ink/65 hover:bg-black/5 hover:text-ink',
-            ]"
-            title="柱状图"
-            @click="viewMode = 'bar'"
-          >
-            <BarChart2 class="h-3.5 w-3.5" aria-hidden="true" />
-            <span>柱状图</span>
-          </button>
-          <button
-            type="button"
-            :class="[
-              'flex items-center gap-1.5 rounded px-2.5 py-1 text-xs font-medium transition',
-              viewMode === 'line'
-                ? 'bg-ink text-parchment shadow-sm'
-                : 'text-ink/65 hover:bg-black/5 hover:text-ink',
-            ]"
-            title="折线图"
-            @click="viewMode = 'line'"
-          >
-            <LineChart class="h-3.5 w-3.5" aria-hidden="true" />
-            <span>折线图</span>
-          </button>
-        </div>
       </div>
     </div>
-
-    <!-- 表格视图 -->
-    <div v-show="viewMode === 'table'" class="max-h-[360px] overflow-auto">
       <table class="min-w-full border-separate border-spacing-0 text-left text-sm">
         <thead class="sticky top-0 z-10 bg-[#efe6d8]">
           <tr>
